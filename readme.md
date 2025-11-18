@@ -86,7 +86,7 @@ Funcionalidades:
 - Mostra teclas pressionadas e comandos enviados
 - Envia atalhos para o sistema
 - Permite configurar ações por tecla
-- Ao configurar funções das teclas, use os nomes suportados listados em config/keyref.md (essa lista contém os nomes válidos que podem ser usados em keys.yaml)
+- Ao configurar funções das teclas, use os nomes suportados listados em [keyref.md](keyref.md) (essa lista contém os nomes válidos que podem ser usados em keys.yaml)
 - Suporta ícones (PNG/JPG/WebP)
 - Auto-detecção da porta serial
 - Monitor CPU/RAM
@@ -166,5 +166,9 @@ O executável aparecerá em `dist/streamdeck.exe`. Mover o .exe para a raiz do p
 
 ---
 
+8. Licença
 
-Licença, contribuições e instruções adicionais podem ser adicionadas conforme necessário.
+Este projeto está sob a [Licença MIT](LICENSE).
+
+Você pode usar, modificar e distribuir livremente, desde que mantenha os créditos.
+
