@@ -3,7 +3,11 @@ import tkinter as tk
 from tkinter import simpledialog, filedialog
 from PIL import Image, ImageTk
 
-ASSET_DIR = os.path.join("assets", "icons")
+# Diretório onde este arquivo está localizado
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Caminho absoluto para assets/icons
+ASSET_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "assets", "icons"))
 
 
 class KeyButton(tk.Frame):
@@ -16,11 +20,9 @@ class KeyButton(tk.Frame):
         self.on_mapping_changed = on_mapping_changed
         self._icon_img = None
 
-        # Frame fixo do botão (quadrado)
         self.config(width=82, height=82)
         self.pack_propagate(False)
 
-        # Botão interno
         self.button = tk.Button(
             self,
             text=self.key,
@@ -39,41 +41,36 @@ class KeyButton(tk.Frame):
         )
         self.button.pack(fill="both", expand=True)
 
-        # Hover
         self.button.bind("<Enter>", self._on_enter)
         self.button.bind("<Leave>", self._on_leave)
         self.button.bind("<Button-3>", self._on_right_click)
 
         self._update_visual()
 
-    # Hover
     def _on_enter(self, event):
         self.button.configure(bg=self.theme["theme"]["button_hover"])
 
     def _on_leave(self, event):
         self.button.configure(bg=self.theme["theme"]["button"])
 
-    # Flash ao pressionar no serial
     def flash(self):
         self.button.configure(bg=self.theme["theme"]["button_active"])
         self.after(120, lambda: self.button.configure(bg=self.theme["theme"]["button"]))
 
-    # Menu direito
     def _on_right_click(self, event):
         menu = tk.Menu(self, tearoff=0)
         menu.add_command(label="Alterar ação…", command=self._change_action)
         menu.add_command(label="Alterar ícone…", command=self._change_icon)
         menu.add_separator()
         menu.add_command(label="Remover ícone", command=self._remove_icon)
-
         menu.tk_popup(event.x_root, event.y_root)
 
     def _change_action(self):
         current = self.km.get_action(self.key) or ""
         new = simpledialog.askstring(
-            "Configurar ação", 
-            f"Ação para {self.key}:", 
-            initialvalue=current, 
+            "Configurar ação",
+            f"Ação para {self.key}:",
+            initialvalue=current,
             parent=self.winfo_toplevel()
         )
         if not new:
@@ -85,17 +82,16 @@ class KeyButton(tk.Frame):
         file = filedialog.askopenfilename(
             title="Escolher ícone",
             filetypes=[("Imagens", "*.png *.jpg *.jpeg *.webp")],
-            initialdir=os.path.abspath(ASSET_DIR)
+            initialdir=ASSET_DIR
         )
         if file:
-            self.km.set_icon(self.key, file)
+            self.km.set_icon(self.key, os.path.abspath(file))
             self._update_visual()
 
     def _remove_icon(self):
         self.km.set_icon(self.key, None)
         self._update_visual()
 
-    # Atualização visual principal
     def _update_visual(self):
         action = self.km.get_action(self.key) or ""
         icon_path = self.km.get_icon(self.key)
@@ -108,7 +104,6 @@ class KeyButton(tk.Frame):
         else:
             self._set_text(action)
 
-    # Detecta ícones automáticos
     def _guess_icon_from_action(self, action):
         action = action.lower()
         matches = {
@@ -122,23 +117,21 @@ class KeyButton(tk.Frame):
         for key, icon in matches.items():
             if key in action:
                 path = os.path.join(ASSET_DIR, icon)
+                path = os.path.abspath(path)
                 if os.path.exists(path):
                     return path
         return None
 
-    # Aplica ícone e texto pequeno
     def _apply_icon(self, path, action):
         try:
             img = Image.open(path)
             w, h = img.size
 
-            # Ícone 40px máx
             scale = 40 / max(w, h)
             img = img.resize((int(w * scale), int(h * scale)), Image.LANCZOS)
 
             self._icon_img = ImageTk.PhotoImage(img)
 
-            # Texto pequeno
             short = action if len(action) <= 12 else action[:10] + "…"
 
             self.button.config(
@@ -152,7 +145,6 @@ class KeyButton(tk.Frame):
             print("Erro ícone:", e)
             self._set_text(action)
 
-    # Apenas texto
     def _set_text(self, action):
         short = action if len(action) <= 14 else action[:12] + "…"
         if action:
