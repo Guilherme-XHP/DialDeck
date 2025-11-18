@@ -19,7 +19,7 @@ def load_yaml(path):
 class StreamDeckApp:
     def __init__(self, root):
         self.root = root
-        root.title("StreamDeck Do Paraguai")
+        root.title("DialDeck - StreamDeck Do Paraguai")
 
         # FORÇA ÍCONE NA TASKBAR
         try:
@@ -304,3 +304,4 @@ if __name__ == "__main__":
     root = tk.Tk()
     app = StreamDeckApp(root)
     root.mainloop()
+
