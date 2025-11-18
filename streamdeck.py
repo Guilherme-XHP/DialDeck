@@ -11,25 +11,30 @@ from modules.ui_elements import KeyButton
 from modules.system_monitor import get_cpu_usage, get_ram_usage
 
 
-def load_yaml(path):
-    with open(path, "r", encoding="utf-8") as f:
+def load_yaml(relative_path):
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    full_path = os.path.join(base_dir, relative_path)
+    with open(full_path, "r", encoding="utf-8") as f:
         return yaml.safe_load(f)
 
 
 class StreamDeckApp:
     def __init__(self, root):
         self.root = root
-        root.title("DialDeck - StreamDeck Do Paraguai")
+        root.title("StreamDeck Do Paraguai")
 
         # FORÇA ÍCONE NA TASKBAR
         try:
-            root.iconbitmap("assets/logo.ico")
+            base_dir = os.path.dirname(os.path.abspath(__file__))
+            root.iconbitmap(os.path.join(base_dir, "assets/logo.ico"))
         except:
             pass
 
+
         self.config_data = load_yaml("config/settings.yaml")["settings"]
         self.theme = load_yaml("config/theme.yaml")
-        self.km = KeymapManager("config/keys.yaml")
+        self.km = KeymapManager(os.path.join(base_dir, "config/keys.yaml"))
+
 
         w = self.config_data.get("window_width", 780)
         h = self.config_data.get("window_height", 720)
@@ -304,4 +309,3 @@ if __name__ == "__main__":
     root = tk.Tk()
     app = StreamDeckApp(root)
     root.mainloop()
-
