@@ -1,0 +1,12 @@
+theme:
+  background: "#1e1e1e"
+  panel: "#252526"
+  button: "#3c3c3c"
+  button_hover: "#4c4c4c"
+  button_active: "#007acc"
+  text: "#ffffff"
+  text_dim: "#c8c8c8"
+  accent: "#0e639c"
+  border_radius: 8
+  font: "Segoe UI"
+  font_size: 11

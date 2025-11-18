@@ -1,0 +1,5 @@
+settings:
+  auto_connect: true
+  window_width: 800
+  window_height: 800
+  baud_rate: 115200

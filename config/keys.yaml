@@ -1,0 +1,48 @@
+KEY_#:
+  action: next track
+  icon: assets/icons/next.png
+KEY_*:
+  action: previous track
+  icon: assets/icons/prev.png
+KEY_0:
+  action: play/pause media
+  icon: assets/icons/play.png
+KEY_1:
+  action: f13
+  icon: null
+KEY_2:
+  action: f14
+  icon: null
+KEY_3:
+  action: f15
+  icon: null
+KEY_4:
+  action: f16
+  icon: null
+KEY_5:
+  action: f17
+  icon: null
+KEY_6:
+  action: f18
+  icon: C:/Users/guiso/Downloads/images.png
+KEY_7:
+  action: f19
+  icon: null
+KEY_8:
+  action: f20
+  icon: null
+KEY_9:
+  action: f21
+  icon: null
+KEY_A:
+  action: ctrl+shift+f1
+  icon: null
+KEY_B:
+  action: ctrl+shift+f2
+  icon: null
+KEY_C:
+  action: ctrl+shift+f3
+  icon: null
+KEY_M:
+  action: toggle mute
+  icon: null
