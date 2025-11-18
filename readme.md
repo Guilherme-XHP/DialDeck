@@ -166,9 +166,10 @@ O executável aparecerá em `dist/streamdeck.exe`. Mover o .exe para a raiz do p
 
 ---
 
-8. Licença
+## 8. Licença
 
 Este projeto está sob a [Licença MIT](LICENSE).
 
 Você pode usar, modificar e distribuir livremente, desde que mantenha os créditos.
+
 
