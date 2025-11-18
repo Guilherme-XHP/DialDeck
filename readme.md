@@ -1,4 +1,4 @@
-# StreamDeck Felitron — README
+# DialDeck — README
 
 Um projeto open‑source que transforma um teclado telefônico Felitron S8010 em um StreamDeck customizável.
 
@@ -165,5 +165,6 @@ Flags:
 O executável aparecerá em `dist/streamdeck.exe`. Mover o .exe para a raiz do projeto, pois o PyInstaller não copia as pastas assets/ e config/.
 
 ---
+
 
 Licença, contribuições e instruções adicionais podem ser adicionadas conforme necessário.
