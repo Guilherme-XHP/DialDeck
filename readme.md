@@ -43,7 +43,7 @@ Mapeamento final das teclas principais:
 - 9 - 6 = #
 
 Teclas extras (referência histórica; não pertencem à matriz principal):
-- 7 - 6 = mute
+- 7 - 6 = mute (mapeado como key_M, pois ele usa os row e col padrões)
 - 5 - 2 + D23 = tone
 - 7 - 6 + D22 = redial
 - 18 - 9 = flash
